@@ -2,6 +2,7 @@ import os
 import time
 
 #TODO: implement argument parsing to select source and target folders
+#      https://docs.python.org/3.4/library/optparse.html
 
 directory = {'source':'work','target':'backup'}
 
