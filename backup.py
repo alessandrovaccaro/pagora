@@ -1,6 +1,8 @@
 import os
 import time
 
+#TODO: implement argument parsing to select source and target folders
+
 directory = {'source':'work','target':'backup'}
 
 if not os.path.exists(directory['target']):
