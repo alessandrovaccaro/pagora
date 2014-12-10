@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import sys
 import urllib.request
 import xml.etree.ElementTree as elm_tree
@@ -17,9 +18,13 @@ if __name__ == '__main__':
         options['location'] = sys.argv[1]
 
     weather_url = 'http://wxdata.weather.com/wxdata/weather/local/{location}?cc=*&unit={unit}&dayf=2'
-    weather_xml = urllib.request.urlopen(weather_url.format(**options))
-    #parse xml
-    weather_root = elm_tree.fromstring(weather_xml.read())
+    try:
+        weather_xml = urllib.request.urlopen(weather_url.format(**options))
+        #parse xml
+        weather_root = elm_tree.fromstring(weather_xml.read())
+    except urllib.error.URLError:
+        print('Connection error')
+        sys.exit(-1) 
 
     #extract relevant data
     temp = weather_root.find('cc/tmp').text
